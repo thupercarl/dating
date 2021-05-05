@@ -17,7 +17,7 @@ $f3 = Base::instance();
 $f3->route('GET /', function(){
     //display the home page
     $view = new Template();
-    echo $view->render('views/info.html');
+    echo $view->render('views/home.html');
 });
 
 $f3->route('GET|POST /personal', function(){
@@ -31,12 +31,25 @@ $f3->route('GET|POST /personal', function(){
         $_SESSION['age'] = $_POST['age'];
         $_SESSION['gender'] = $_POST['gender'];
         $_SESSION['phone'] = $_POST['phone'];
-        header('location: interests');
+        header('location: profile');
     }
 
     //Display the personal_info page
     $view = new Template();
     echo $view->render('views/personal_info.html');
+});
+
+$f3->route('GET|POST /profile', function(){
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //var_dump($_POST);
+        //data validation goes here
+        $_SESSION['conds'] = implode(', ', $_POST['conds']);
+        header('location: summary');
+    }
+    //Display the profile page
+    $view = new Template();
+    echo $view->render('views/profile.html');
 });
 
 //run fat-free
