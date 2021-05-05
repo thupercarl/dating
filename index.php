@@ -40,16 +40,43 @@ $f3->route('GET|POST /personal', function(){
 });
 
 $f3->route('GET|POST /profile', function(){
+    //if the form has been submitted, add the data to session
+    //and send the user to the next order form
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //var_dump($_POST);
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['state'] = $_POST['state'];
+        $_SESSION['seeking'] = $_POST['seeking'];
+        $_SESSION['biography'] = $_POST['biography'];
+        header('location: interests');
+    }
+
+    //Display the profile_info page
+    $view = new Template();
+    echo $view->render('views/profile.html');
+});
+
+$f3->route('GET|POST /interests', function(){
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //var_dump($_POST);
+
+
+
+        //TODO:TAILOR THIS TO INTERESTS PAGE
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['state'] = $_POST['state'];
+        $_SESSION['seeking'] = $_POST['seeking'];
+        $_SESSION['biography'] = $_POST['biography'];
+
         //data validation goes here
         $_SESSION['conds'] = implode(', ', $_POST['conds']);
         header('location: summary');
     }
     //Display the profile page
     $view = new Template();
-    echo $view->render('views/profile.html');
+    echo $view->render('views/interests.html');
 });
 
 //run fat-free
