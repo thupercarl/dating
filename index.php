@@ -76,7 +76,7 @@ $f3->route('GET|POST /interests', function(){
 
 $f3->route('GET /summary', function(){
     //Display the summary page
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
     $view = new Template();
     echo $view->render('views/summary.html');
 });

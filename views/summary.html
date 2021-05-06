@@ -5,9 +5,50 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
     <title>Summary</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <nav>
+        <ul>
+            <li class="navbar navbar-expand-lg navbar-light bg-light"><a class="text-dark" href="/328/dating">PC Dating Website</a></li>
+        </ul>
+    </nav>
+
+    <div class="container-lg ml-5 mr-5 border">
+
+            <div class="row">
+                <div class="col-sm border">
+                    <p>Name: {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
+                    <hr class="border">
+                    <p>Gender: {{ @SESSION.gender }}</p>
+                    <hr class="border">
+                    <p>Age: {{ @SESSION.age }}</p>
+                    <hr class="border">
+                    <p>Phone: {{ @SESSION.phone }}</p>
+                    <hr class="border">
+                    <p>Email: {{ @SESSION.email }}</p>
+                    <hr class="border">
+                    <p>State: {{ @SESSION.state }}</p>
+                    <hr class="border">
+                    <p>Seeking: {{ @SESSION.seeking }}</p>
+                    <hr class="border">
+                    <p>Interests: {{ @SESSION.indoor }} {{ @SESSION.outdoor }}</p>
+                </div>
+
+                <div class="col-sm border float-right">
+                    <img src="images/splash.png" class="rounded" alt="computerHeads" width="500" height="500">
+                    <p>{{ @SESSION.biography }}</p>
+                </div>
+            </div>
+        <div class="text-center">
+            <button class="btn btn-primary float-"><a class="text-light" href="/328/dating">Contact Me!</a></button>
+        </div>
+
+        <!--END CONTAINER DIV-->
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
