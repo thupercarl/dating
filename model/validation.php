@@ -42,12 +42,13 @@ function validOutdoor($outdoor)
             return false;
         }
     }
+    //all choices are valid
     return true;
 }
 
 function validIndoor($indoor)
 {
-    $validChoices = getOutdoor();
+    $validChoices = getIndoor();
 
     //Make sure each selected choice is valid
     foreach ($indoor as $activity) {
@@ -55,5 +56,6 @@ function validIndoor($indoor)
             return false;
         }
     }
+    //all choices are valid
     return true;
 }

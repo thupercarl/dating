@@ -8,7 +8,7 @@
 // Get the outdoor for the page
 function getOutdoor()
 {
-    return array("tv","movies","cooking","board games","puzzles","reading","playing cards","video games");
+    return array("tv","movies","cooking","boardgames","puzzles","reading","playingcards","videogames");
 }
 
 // Get the indoor for the page
