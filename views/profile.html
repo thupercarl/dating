@@ -26,7 +26,7 @@
         <div class="form-group col-lg-6 col-xs-6 float-right">
             <label for="biography" class="col-sm-2 control-label">Biography</label>
             <div class="col-sm-4">
-                <textarea class="form-control" name="biography" id="biography" ></textarea>
+                <textarea class="form-control" name="biography" id="biography">{{ @SESSION.biography }}</textarea>
             </div>
             <br>
         </div>
@@ -35,11 +35,16 @@
         <div class="form-group">
             <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="email" id="email" >
+                <input class="form-control" type="text" name="email" id="email" value="{{ @SESSION.email }}" >
+
+                <!-- display an error message for email if there is one -->
+                <check if="{{ isset(@errors['email']) }}">
+                    <span class="err">{{ @errors['email'] }}</span>
+                </check>
             </div>
             <label for="state" class="col-sm-2 control-label">State</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="state" id="state" >
+                <input class="form-control" type="text" name="state" id="state" value="{{ @SESSION.state }}" >
             </div>
         </div>
 
@@ -48,10 +53,23 @@
             <label class="col-sm-2 control-label">Seeking</label>
             <div class="col-sm-4">
 
+                <repeat group="{{ @seeking }}" value="{{ @morf }}">
+                    <label><input type="radio"
+                                  name="seeking"
+                                  id="{{ @morf }}"
+                                  value="{{ @morf }}"
+                        <check if="{{ @morf == @userSeeking }}">checked="checked"</check>
+                        > {{ ucfirst(@morf) }}
+                        </input>
+                    </label><br>
+                </repeat>
+
+                <!--
                 <label><input type="radio" name="seeking"
                               id="smale" value="male"> Male</label><br>
                 <label><input type="radio" name="seeking"
                               id="sfemale" value="female"> Female</label><br>
+                              -->
             </div>
         </div>
 

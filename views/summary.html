@@ -33,8 +33,12 @@
                     <p>State: {{ @SESSION.state }}</p>
                     <hr class="border">
                     <p>Seeking: {{ @SESSION.seeking }}</p>
-                    <hr class="border">
-                    <p>Interests: {{ @SESSION.indoor }} {{ @SESSION.outdoor }}</p>
+
+                    <check if="{{ !empty(getIndoor()) || !empty(getOutdoor()) }}">
+                        <hr class="border">
+                        <p>Interests: {{ @SESSION.indoor }} {{ @SESSION.outdoor }}</p>
+                    </check>
+
                 </div>
 
                 <div class="col-sm border float-right">

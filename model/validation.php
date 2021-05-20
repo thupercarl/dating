@@ -12,7 +12,11 @@ function validName($name)
 
 function validAge($age)
 {
-    return ctype_digit($age);
+    if($age >= 18 && $age <= 118)
+    {
+        return true;
+    }
+    return false;
 }
 
 function validPhone($phone)

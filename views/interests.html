@@ -26,6 +26,17 @@
             <h4>In-door Interests</h4>
             <div class="row">
                 <div class="col-sm">
+
+                    <repeat group="{{ @indoorArray }}" value="{{ @indoorIterativeValue }}">
+                        <label><input type="checkbox"
+                                      name="indoor[]"
+                                      value="{{ @indoorIterativeValue }}"
+                            <check if="{{ in_array(@indoorIterativeValue, @userChoiceIn) }}">
+                                checked="checked"
+                            </check>
+                            > {{ @indoorIterativeValue }}</label><br>
+                    </repeat>
+                    <!--
                     <div>
                         <input class="form-check-input ml-3" type="checkbox" value="tv" id="tv" name="indoor[]">
                         <label class="form-check-label ml-5" for="tv">
@@ -80,12 +91,23 @@
                             video games
                         </label>
                     </div>
+                    -->
                 </div>
             </div>
 
             <h4>Out-door Interests</h4>
             <div class="row">
                 <div class="col-sm">
+                    <repeat group="{{ @outdoorArray }}" value="{{ @outdoorIterativeValue }}">
+                        <label><input type="checkbox"
+                                      name="outdoor[]"
+                                      value="{{ @outdoorIterativeValue }}"
+                            <check if="{{ in_array(@outdoorIterativeValue, @userChoiceOut) }}">
+                                checked="checked"
+                            </check>
+                            > {{ @outdoorIterativeValue }}</label><br>
+                    </repeat>
+                    <!--
                     <div>
                         <input class="form-check-input ml-3" type="checkbox" value="hiking" id="hiking" name="outdoor[]">
                         <label class="form-check-label ml-5" for="hiking">
@@ -128,6 +150,7 @@
                             collecting
                         </label>
                     </div>
+                    -->
                 </div>
             </div>
 

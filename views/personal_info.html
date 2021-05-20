@@ -25,15 +25,31 @@
 
             <label for="fname" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="fname" id="fname" >
+                <input class="form-control" type="text" name="fname" id="fname" value="{{ @SESSION.fname }}" >
+
+                <!-- display an error message for fname if there is one -->
+                <check if="{{ isset(@errors['fname']) }}">
+                    <span class="err">{{ @errors['fname'] }}</span>
+                </check>
             </div>
+
             <label for="lname" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="lname" id="lname" >
+                <input class="form-control" type="text" name="lname" id="lname" value="{{ @SESSION.lname }}" >
+
+                <!-- display an error message for lname if there is one -->
+                <check if="{{ isset(@errors['lname']) }}">
+                    <span class="err">{{ @errors['lname'] }}</span>
+                </check>
             </div>
             <label for="age" class="col-sm-2 control-label">Age</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="age" id="age" >
+                <input class="form-control" type="text" name="age" id="age" value="{{ @SESSION.age }}" >
+
+                <!-- display an error message for age if there is one -->
+                <check if="{{ isset(@errors['age']) }}">
+                    <span class="err">{{ @errors['age'] }}</span>
+                </check>
             </div>
         </div>
         <br>
@@ -42,16 +58,36 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Gender</label>
             <div class="col-sm-4">
+
+                <repeat group="{{ @gender }}" value="{{ @morf }}">
+                    <label><input type="radio"
+                                  name="gender"
+                                  id="{{ @morf }}"
+                                  value="{{ @morf }}"
+                                  <check if="{{ @morf == @userGender }}">checked="checked"</check>
+                        > {{ ucfirst(@morf) }}
+                        </input>
+                    </label><br>
+                </repeat>
+
+
+                <!--
                 <label><input type="radio" name="gender"
                               id="male" value="male"> Male</label><br>
                 <label><input type="radio" name="gender"
                               id="female" value="female"> Female</label><br>
+                              -->
             </div>
         </div>
 
         <label for="phone" class="col-sm-2 control-label">Phone Number</label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" name="phone" id="phone" >
+            <input class="form-control" type="text" name="phone" id="phone" value="{{ @SESSION.phone }}" >
+
+            <!-- display an error message for phone if there is one -->
+            <check if="{{ isset(@errors['phone']) }}">
+                <span class="err">{{ @errors['phone'] }}</span>
+            </check>
         </div>
 
         <input class="form-control btn btn-primary col-lg-1 col-xs-1 float-right"

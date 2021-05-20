@@ -5,14 +5,19 @@
  *
  */
 
-// Get the outdoor for the page
-function getOutdoor()
-{
-    return array("tv","movies","cooking","boardgames","puzzles","reading","playingcards","videogames");
-}
-
 // Get the indoor for the page
 function getIndoor()
 {
-    return array("hiking","biking","swimming","collecting","walking","climbing");
+    return array("tv", "movies", "cooking", "boardgames", "puzzles", "reading", "playingcards", "videogames");
+}
+
+// Get the outdoor for the page
+function getOutdoor()
+{
+    return array("hiking", "biking", "swimming", "collecting", "walking", "climbing");
+}
+
+function getGender()
+{
+    return array("male", "female");
 }

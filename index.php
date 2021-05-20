@@ -1,16 +1,17 @@
 <?php
 
+Header("Cache-Control: max-age=3000, must-revalidate");
 //this is my controller for the dating project
 ini_set('display_errors',1);
 error_reporting(E_ALL);
-
-//Start a session
-session_start();
 
 //require autoload file
 require_once('vendor/autoload.php');
 require_once ('model/data-layer.php');
 require_once ('model/validation.php');
+
+//Start a session
+session_start();
 
 //instantiate fat-free
 $f3 = Base::instance();
@@ -28,9 +29,11 @@ $f3->route('GET|POST /personal', function($f3){
     //if the form has been submitted, add the data to session
     //and send the user to the next order form
 
+    $userGender = "";
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
+        $userGender = $_POST['gender'];
 
         //******************************************************START VALIDATION
         //******************************************************FIRST NAME
@@ -71,14 +74,9 @@ $f3->route('GET|POST /personal', function($f3){
         }
         //Otherwise, set an error variable in the hive
         else {
-            $f3->set('errors["email"]', 'Please enter a valid email address');
+            $f3->set('errors["phone"]', 'Please enter a valid phone number (10 digits no dashes)');
         }
         //******************************************************END VALIDATION
-
-
-
-        //Grab gender data
-        $_SESSION['gender'] = $_POST['gender'];
 
 
 
@@ -89,6 +87,9 @@ $f3->route('GET|POST /personal', function($f3){
         }
     }//END POST IF
 
+    //add gender to hive
+    $f3->set('gender', getGender());
+    $f3->set('userGender', $userGender);
 
 
     //Display the personal_info page
@@ -100,10 +101,12 @@ $f3->route('GET|POST /profile', function($f3){
     //if the form has been submitted, add the data to session
     //and send the user to the next order form
 
+    $userSeeking = "";
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //var_dump($_POST);
 
-
+        $userSeeking = $_POST['seeking'];
 
         //******************************************************START VALIDATION
         //******************************************************EMAIL
@@ -122,7 +125,7 @@ $f3->route('GET|POST /profile', function($f3){
 
         //Grab state, seeking and biography data
         $_SESSION['state'] = $_POST['state'];
-        $_SESSION['seeking'] = $_POST['seeking'];
+        //$_SESSION['seeking'] = $_POST['seeking'];
         $_SESSION['biography'] = $_POST['biography'];
 
 
@@ -134,7 +137,9 @@ $f3->route('GET|POST /profile', function($f3){
         }
     }//END POST IF
 
-
+    //add seeking to hive
+    $f3->set('seeking', getGender());
+    $f3->set('userSeeking', $userSeeking);
 
     //Display the profile_info page
     $view = new Template();
@@ -143,6 +148,9 @@ $f3->route('GET|POST /profile', function($f3){
 
 $f3->route('GET|POST /interests', function($f3){
 
+    $userIndoor = array();
+    $userOutdoor = array();
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //var_dump($_POST);
 
@@ -150,24 +158,28 @@ $f3->route('GET|POST /interests', function($f3){
 
         //******************************************************START VALIDATION
         //******************************************************OUTDOOR
-        $outdoor = $_POST['outdoor'];
-        //If array is valid, store data
-        if(!empty($outdoor) && validOutdoor($outdoor)) {
-            $_SESSION['outdoor'] = implode(', ', $_POST['outdoor']);
-        }
-        //Otherwise, set an error variable in the hive
-        else {
-            $f3->set('errors["outdoor"]', 'Please select valid answers');
+        if (!empty($_POST['outdoor'])) {
+
+            $userOutdoor = $_POST['outdoor'];
+            //If array is valid, store data
+            if (validOutdoor($userOutdoor)) {
+                $_SESSION['outdoor'] = implode(', ', $userOutdoor);
+            } //Otherwise, set an error variable in the hive
+            else {
+                $f3->set('errors["outdoor"]', 'Please select valid answers');
+            }
         }
         //******************************************************INDOOR
-        $indoor = $_POST['indoor'];
-        //If array is valid, store data
-        if(!empty($indoor) && validIndoor($indoor)) {
-            $_SESSION['indoor'] = implode(', ', $_POST['indoor']);
-        }
-        //Otherwise, set an error variable in the hive
-        else {
-            $f3->set('errors["indoor"]', 'Please select valid answers');
+        if (!empty($_POST['indoor'])) {
+
+            $userIndoor = $_POST['indoor'];
+            //If array is valid, store data
+            if (validIndoor($userIndoor)) {
+                $_SESSION['indoor'] = implode(', ', $userIndoor);
+            } //Otherwise, set an error variable in the hive
+            else {
+                $f3->set('errors["indoor"]', 'Please select valid answers');
+            }
         }
         //******************************************************END VALIDATION
 
@@ -179,6 +191,13 @@ $f3->route('GET|POST /interests', function($f3){
             header('location: summary');
         }
     }
+
+    //add all array variables to hive
+    $f3->set('indoorArray',getIndoor());
+    $f3->set('userChoiceIn', $userIndoor);
+    $f3->set('outdoorArray',getOutdoor());
+    $f3->set('userChoiceOut', $userOutdoor);
+
     //Display the profile page
     $view = new Template();
     echo $view->render('views/interests.html');
