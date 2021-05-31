@@ -34,7 +34,7 @@
                     <hr class="border">
                     <p>Seeking: {{ @SESSION.seeking }}</p>
 
-                    <check if="{{ !empty(getIndoor()) || !empty(getOutdoor()) }}">
+                    <check if="{{ !empty(DataLayer::getIndoor()) || !empty(DataLayer::getOutdoor()) }}">
                         <hr class="border">
                         <p>Interests: {{ @SESSION.indoor }} {{ @SESSION.outdoor }}</p>
                     </check>

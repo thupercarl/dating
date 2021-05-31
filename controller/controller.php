@@ -35,7 +35,7 @@ class Controller
             //******************************************************FIRST NAME
             $fname = $_POST['fname'];
             //If name is valid, store data
-            if(validName($fname)) {
+            if(Validation::validName($fname)) {
                 $_SESSION['fname'] = $fname;
             }
             //Otherwise, set an error variable in the hive
@@ -45,7 +45,7 @@ class Controller
             //******************************************************LAST NAME
             $lname = $_POST['lname'];
             //If name is valid, store data
-            if(validName($lname)) {
+            if(Validation::validName($lname)) {
                 $_SESSION['lname'] = $lname;
             }
             //Otherwise, set an error variable in the hive
@@ -55,7 +55,7 @@ class Controller
             //******************************************************AGE
             $age = $_POST['age'];
             //If age is valid, store data
-            if(validAge($age)) {
+            if(Validation::validAge($age)) {
                 $_SESSION['age'] = $age;
             }
             //Otherwise, set an error variable in the hive
@@ -65,7 +65,7 @@ class Controller
             //******************************************************PHONE
             $phone = $_POST['phone'];
             //If phone number is valid, store data
-            if(validPhone($phone)) {
+            if(Validation::validPhone($phone)) {
                 $_SESSION['phone'] = $phone;
             }
             //Otherwise, set an error variable in the hive
@@ -84,7 +84,7 @@ class Controller
         }//END POST IF
 
         //add gender to hive
-        $this->_f3->set('gender', getGender());//TODO: Decide how to connect this with data-layer or classes
+        $this->_f3->set('gender', DataLayer::getGender());//TODO: Decide how to connect this with data-layer or classes
         $this->_f3->set('userGender', $userGender);
 
 
@@ -109,7 +109,7 @@ class Controller
             //******************************************************EMAIL
             $email = $_POST['email'];
             //If email is valid, store data
-            if(validEmail($email)) {
+            if(Validation::validEmail($email)) {
                 $_SESSION['email'] = $email;
             }
             //Otherwise, set an error variable in the hive
@@ -135,7 +135,7 @@ class Controller
         }//END POST IF
 
         //add seeking to hive
-        $this->_f3->set('seeking', getGender());
+        $this->_f3->set('seeking', DataLayer::getGender());
         $this->_f3->set('userSeeking', $userSeeking);
 
         //Display the profile_info page
@@ -159,7 +159,7 @@ class Controller
 
                 $userOutdoor = $_POST['outdoor'];
                 //If array is valid, store data
-                if (validOutdoor($userOutdoor)) {
+                if (Validation::validOutdoor($userOutdoor)) {
                     $_SESSION['outdoor'] = implode(', ', $userOutdoor);
                 } //Otherwise, set an error variable in the hive
                 else {
@@ -171,7 +171,7 @@ class Controller
 
                 $userIndoor = $_POST['indoor'];
                 //If array is valid, store data
-                if (validIndoor($userIndoor)) {
+                if (Validation::validIndoor($userIndoor)) {
                     $_SESSION['indoor'] = implode(', ', $userIndoor);
                 } //Otherwise, set an error variable in the hive
                 else {
@@ -190,9 +190,9 @@ class Controller
         }
 
         //add all array variables to hive
-        $this->_f3->set('indoorArray',getIndoor());
+        $this->_f3->set('indoorArray',DataLayer::getIndoor());
         $this->_f3->set('userChoiceIn', $userIndoor);
-        $this->_f3->set('outdoorArray',getOutdoor());
+        $this->_f3->set('outdoorArray',DataLayer::getOutdoor());
         $this->_f3->set('userChoiceOut', $userOutdoor);
 
         //Display the profile page

@@ -4,20 +4,23 @@
  *Return data for the cupcakes app
  *
  */
-
-// Get the indoor for the page
-function getIndoor()
+class DataLayer
 {
-    return array("tv", "movies", "cooking", "boardgames", "puzzles", "reading", "playingcards", "videogames");
-}
+// Get the indoor for the page
+    static function getIndoor()
+    {
+        return array("tv", "movies", "cooking", "boardgames", "puzzles", "reading", "playingcards", "videogames");
+    }
 
 // Get the outdoor for the page
-function getOutdoor()
-{
-    return array("hiking", "biking", "swimming", "collecting", "walking", "climbing");
+    static function getOutdoor()
+    {
+        return array("hiking", "biking", "swimming", "collecting", "walking", "climbing");
+    }
+
+    static function getGender()
+    {
+        return array("male", "female");
+    }
 }
 
-function getGender()
-{
-    return array("male", "female");
-}
