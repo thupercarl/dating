@@ -4,7 +4,7 @@
  * validate data for the dating app
  *
  */
-class Validation
+class Model
 {
     static function validName($name)
     {

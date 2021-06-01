@@ -29,7 +29,15 @@ $f3->route('GET|POST /profile', function($f3){
 });
 
 $f3->route('GET|POST /interests', function($f3){
-    $GLOBALS['con']->interests();
+    if(($_SESSION['ispremium']))
+    {
+        $GLOBALS['con']->interests();
+    }
+    else
+    {
+        $GLOBALS['con']->summary();
+    }
+
 });
 
 $f3->route('GET /summary', function(){

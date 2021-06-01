@@ -25,7 +25,7 @@
 
             <label for="fname" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="fname" id="fname" value="{{ @SESSION.fname }}" >
+                <input class="form-control" type="text" name="fname" id="fname" value="{{ @SESSION.member->getFname }}" >
 
                 <!-- display an error message for fname if there is one -->
                 <check if="{{ isset(@errors['fname']) }}">
@@ -35,7 +35,7 @@
 
             <label for="lname" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="lname" id="lname" value="{{ @SESSION.lname }}" >
+                <input class="form-control" type="text" name="lname" id="lname" value="{{ @SESSION.member->getLname }}" >
 
                 <!-- display an error message for lname if there is one -->
                 <check if="{{ isset(@errors['lname']) }}">
@@ -44,7 +44,7 @@
             </div>
             <label for="age" class="col-sm-2 control-label">Age</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="age" id="age" value="{{ @SESSION.age }}" >
+                <input class="form-control" type="text" name="age" id="age" value="{{ @SESSION.member->getAge() }}" >
 
                 <!-- display an error message for age if there is one -->
                 <check if="{{ isset(@errors['age']) }}">
@@ -82,13 +82,18 @@
 
         <label for="phone" class="col-sm-2 control-label">Phone Number</label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" name="phone" id="phone" value="{{ @SESSION.phone }}" >
+            <input class="form-control" type="text" name="phone" id="phone" value="{{ @SESSION.member->getPhone() }}" >
 
             <!-- display an error message for phone if there is one -->
             <check if="{{ isset(@errors['phone']) }}">
                 <span class="err">{{ @errors['phone'] }}</span>
             </check>
         </div>
+
+        <h4>Premium Membership</h4>
+        <label><input type="checkbox"
+                      name="optin"
+                      value="premiumacct">Sign me up for a Premium Account!</label>
 
         <input class="form-control btn btn-primary col-lg-1 col-xs-1 float-right"
                type="submit" value="Next">

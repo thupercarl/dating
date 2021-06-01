@@ -20,30 +20,30 @@
 
             <div class="row">
                 <div class="col-sm border">
-                    <p>Name: {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
+                    <p>Name: {{ @SESSION.member->getFname() }} {{ @SESSION.member->getLname() }}</p>
                     <hr class="border">
-                    <p>Gender: {{ @SESSION.gender }}</p>
+                    <p>Gender: {{ @SESSION.member->getGender() }}</p>
                     <hr class="border">
-                    <p>Age: {{ @SESSION.age }}</p>
+                    <p>Age: {{ @SESSION.member->getAge() }}</p>
                     <hr class="border">
-                    <p>Phone: {{ @SESSION.phone }}</p>
+                    <p>Phone: {{ @SESSION.member->getPhone() }}</p>
                     <hr class="border">
-                    <p>Email: {{ @SESSION.email }}</p>
+                    <p>Email: {{ @SESSION.member->getEmail() }}</p>
                     <hr class="border">
-                    <p>State: {{ @SESSION.state }}</p>
+                    <p>State: {{ @SESSION.member->getState() }}</p>
                     <hr class="border">
-                    <p>Seeking: {{ @SESSION.seeking }}</p>
+                    <p>Seeking: {{ @SESSION.member->getSeeking() }}</p>
 
-                    <check if="{{ !empty(DataLayer::getIndoor()) || !empty(DataLayer::getOutdoor()) }}">
+                    <check if="{{ @SESSION['ispremium'] == true }}">
                         <hr class="border">
-                        <p>Interests: {{ @SESSION.indoor }} {{ @SESSION.outdoor }}</p>
+                        <p>Interests: {{ @SESSION.member->getInDoorInterests() }} {{ @SESSION.member->getOutDoorInterests() }}</p>
                     </check>
 
                 </div>
 
                 <div class="col-sm border float-right">
                     <img src="images/splash.png" class="rounded" alt="computerHeads" width="500" height="500">
-                    <p>{{ @SESSION.biography }}</p>
+                    <p>{{ @SESSION.member->getBio() }}</p>
                 </div>
             </div>
         <div class="text-center">

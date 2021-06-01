@@ -6,6 +6,7 @@ class PremiumMember extends Member
     private $_outDoorInterests = array();
 
     /**
+     * grabs user-selected indoor array
      * @return array
      */
     public function getInDoorInterests()
@@ -14,6 +15,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * sets user selections to the indoor array
      * @param array $inDoorInterests
      */
     public function setInDoorInterests($inDoorInterests)
@@ -22,6 +24,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * grabs user-selected outdoor array
      * @return array
      */
     public function getOutDoorInterests()
@@ -30,6 +33,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * sets user selections to the outdoor array
      * @param array $outDoorInterests
      */
     public function setOutDoorInterests($outDoorInterests)

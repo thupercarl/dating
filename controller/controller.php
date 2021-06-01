@@ -1,6 +1,11 @@
 <?php
 
 //Controller class for Dating site
+
+/**
+ * Class Controller
+ * This class handles all index-related functions
+ */
 class Controller
 {
     private $_f3; //router
@@ -25,18 +30,35 @@ class Controller
         //if the form has been submitted, add the data to session
         //and send the user to the next order form
 
+
         $userGender = "";
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            $isPremium = $_POST['optin'];
+            if(isset($_POST['optin']))
+            {
+                $_SESSION['member'] = new PremiumMember();
+                $isPremium = true;
+            }
+            else
+            {
+                $_SESSION['member'] = new Member();
+                $isPremium = false;
+            }
+            //var_dump($_POST);
+            //die();
+            $_SESSION['ispremium'] = $isPremium;
+
             $userGender = $_POST['gender'];
+            $_SESSION['member']->setGender($userGender);
 
             //******************************************************START VALIDATION
             //******************************************************FIRST NAME
             $fname = $_POST['fname'];
             //If name is valid, store data
-            if(Validation::validName($fname)) {
-                $_SESSION['fname'] = $fname;
+            if(Model::validName($fname)) {
+                $_SESSION['member']->setFname($fname);
             }
             //Otherwise, set an error variable in the hive
             else {
@@ -45,8 +67,8 @@ class Controller
             //******************************************************LAST NAME
             $lname = $_POST['lname'];
             //If name is valid, store data
-            if(Validation::validName($lname)) {
-                $_SESSION['lname'] = $lname;
+            if(Model::validName($lname)) {
+                $_SESSION['member']->setLname($lname);
             }
             //Otherwise, set an error variable in the hive
             else {
@@ -55,8 +77,8 @@ class Controller
             //******************************************************AGE
             $age = $_POST['age'];
             //If age is valid, store data
-            if(Validation::validAge($age)) {
-                $_SESSION['age'] = $age;
+            if(Model::validAge($age)) {
+                $_SESSION['member']->setAge($age);
             }
             //Otherwise, set an error variable in the hive
             else {
@@ -65,8 +87,8 @@ class Controller
             //******************************************************PHONE
             $phone = $_POST['phone'];
             //If phone number is valid, store data
-            if(Validation::validPhone($phone)) {
-                $_SESSION['phone'] = $phone;
+            if(Model::validPhone($phone)) {
+                $_SESSION['member']->setPhone($phone);
             }
             //Otherwise, set an error variable in the hive
             else {
@@ -84,8 +106,9 @@ class Controller
         }//END POST IF
 
         //add gender to hive
-        $this->_f3->set('gender', DataLayer::getGender());//TODO: Decide how to connect this with data-layer or classes
+        $this->_f3->set('gender', DataLayer::getGender());
         $this->_f3->set('userGender', $userGender);
+        //$this->_f3->set('isPremium', $isPremium);
 
 
         //Display the personal_info page
@@ -104,13 +127,15 @@ class Controller
             //var_dump($_POST);
 
             $userSeeking = $_POST['seeking'];
+            $_SESSION['member']->setSeeking($userSeeking);
+
 
             //******************************************************START VALIDATION
             //******************************************************EMAIL
             $email = $_POST['email'];
             //If email is valid, store data
-            if(Validation::validEmail($email)) {
-                $_SESSION['email'] = $email;
+            if(Model::validEmail($email)) {
+                $_SESSION['member']->setEmail($email);
             }
             //Otherwise, set an error variable in the hive
             else {
@@ -121,9 +146,12 @@ class Controller
 
 
             //Grab state, seeking and biography data
-            $_SESSION['state'] = $_POST['state'];
+            $state = $_POST['state'];
+            $_SESSION['member']->setState($state);
             //$_SESSION['seeking'] = $_POST['seeking'];
-            $_SESSION['biography'] = $_POST['biography'];
+            $bio = $_POST['biography'];
+            $_SESSION['member']->setBio($bio);
+
 
 
 
@@ -159,8 +187,8 @@ class Controller
 
                 $userOutdoor = $_POST['outdoor'];
                 //If array is valid, store data
-                if (Validation::validOutdoor($userOutdoor)) {
-                    $_SESSION['outdoor'] = implode(', ', $userOutdoor);
+                if (Model::validOutdoor($userOutdoor)) {
+                    $_SESSION['member']->setOutDoorInterests(implode(', ', $userOutdoor));
                 } //Otherwise, set an error variable in the hive
                 else {
                     $this->_f3->set('errors["outdoor"]', 'Please select valid answers');
@@ -171,8 +199,8 @@ class Controller
 
                 $userIndoor = $_POST['indoor'];
                 //If array is valid, store data
-                if (Validation::validIndoor($userIndoor)) {
-                    $_SESSION['indoor'] = implode(', ', $userIndoor);
+                if (Model::validIndoor($userIndoor)) {
+                    $_SESSION['member']->setInDoorInterests(implode(', ', $userIndoor));
                 } //Otherwise, set an error variable in the hive
                 else {
                     $this->_f3->set('errors["indoor"]', 'Please select valid answers');

@@ -35,6 +35,7 @@ class Member
     }
 
     /**
+     * grabs first name
      * @return string
      */
     public function getFname()
@@ -43,6 +44,7 @@ class Member
     }
 
     /**
+     * sets first name
      * @param string $fname
      */
     public function setFname($fname)
@@ -51,6 +53,7 @@ class Member
     }
 
     /**
+     * grabs last name
      * @return string
      */
     public function getLname()
@@ -59,6 +62,7 @@ class Member
     }
 
     /**
+     * sets last name
      * @param string $lname
      */
     public function setLname($lname)
@@ -67,6 +71,7 @@ class Member
     }
 
     /**
+     * grabs age
      * @return string
      */
     public function getAge()
@@ -75,6 +80,7 @@ class Member
     }
 
     /**
+     * sets age
      * @param string $age
      */
     public function setAge($age)
@@ -83,6 +89,7 @@ class Member
     }
 
     /**
+     * grabs gender
      * @return string
      */
     public function getGender()
@@ -91,6 +98,7 @@ class Member
     }
 
     /**
+     * sets gender
      * @param string $gender
      */
     public function setGender($gender)
@@ -99,6 +107,7 @@ class Member
     }
 
     /**
+     * grabs phone num
      * @return string
      */
     public function getPhone()
@@ -107,6 +116,7 @@ class Member
     }
 
     /**
+     * sets phone num
      * @param string $phone
      */
     public function setPhone($phone)
@@ -115,6 +125,7 @@ class Member
     }
 
     /**
+     * grabs email address
      * @return mixed
      */
     public function getEmail()
@@ -123,6 +134,7 @@ class Member
     }
 
     /**
+     * sets email address
      * @param mixed $email
      */
     public function setEmail($email)
@@ -131,6 +143,7 @@ class Member
     }
 
     /**
+     * grabs state
      * @return mixed
      */
     public function getState()
@@ -139,6 +152,7 @@ class Member
     }
 
     /**
+     * sets state
      * @param mixed $state
      */
     public function setState($state)
@@ -147,6 +161,7 @@ class Member
     }
 
     /**
+     * grabs gender seeking
      * @return mixed
      */
     public function getSeeking()
@@ -155,6 +170,7 @@ class Member
     }
 
     /**
+     * sets gender seeking
      * @param mixed $seeking
      */
     public function setSeeking($seeking)
@@ -163,6 +179,7 @@ class Member
     }
 
     /**
+     * grabs bio
      * @return mixed
      */
     public function getBio()
@@ -171,6 +188,7 @@ class Member
     }
 
     /**
+     * sets bio
      * @param mixed $bio
      */
     public function setBio($bio)
