@@ -1,6 +1,6 @@
 <?php
 
-/* validation.php
+/* model.php
  * validate data for the dating app
  *
  */
